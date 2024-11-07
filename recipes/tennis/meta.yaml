@@ -1,0 +1,37 @@
+{% set name = "tennis" %}
+{% set version = "0.0.1" %}  # Match your GitHub release version
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: "https://github.com/Shao-Group/TENNIS/releases/download/v{{ version }}/tennis-{{ version }}.tar.gz"
+  sha256: "34e31ab157c4533059fa7246492b8b7e740e8f206d32dce3c51090ca81410966"
+
+build:
+  number: 0
+  noarch: python    
+  script:
+    - {{ PYTHON }} -m pip install . -vv
+   
+requirements:
+  host:
+    - python >=3.7
+    - pip
+  run:
+    - python >=3.7
+
+test:
+  commands:
+    - tennis --help  
+  
+about:
+  home: https://github.com/Shao-Group/TENNIS/
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: "An evolution-based model to predict unannotated isoforms and refine existing transcriptome annotations"
+    
+extra:
+  recipe-maintainers:
+    - shaogroup
